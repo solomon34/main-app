@@ -1,110 +1,124 @@
-
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:main_app/constants.dart'; 
 
 
-class Community extends StatelessWidget { 
-  
-  
+class CommunityProfile extends StatelessWidget { 
+  static const String id = 'CommunityProfile';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CommunityPage(
-      ),
+      title: "Community Profile", 
+      debugShowCheckedModeBanner: false,
+      home: CommunityPage(),
     );
   }
-}
-class CommunityPage extends StatefulWidget { 
-  static const String id = 'Communitypage';
+} 
+class CommunityPage extends StatelessWidget { 
+  final String _communityName = 'Avatar The Last Airbender'; 
+  final String _bio = 'The world is divided into four nations -- the Water Tribe, the Earth Kingdom, the Fire Nation and and the Air Nomads -- each represented by a natural element for which the nation is named. Benders have the ability to control and manipulate the element from their nation. Only the Avatar is the master of all four elements. The ruthless Fire Nation wants to conquer the world but the only bender who has enough power, the Avatar, has disappeared ... until now. His tribe soon discovers that Aang is the long-lost Avatar. Now Katara and Sokka must safeguard Aang on his journey to master all four elements and save the world from the Fire Nation.';  
+  final String _followers = '410'; 
+  final String _scores = '9/10';  
+  
   @override
-  _CommunityPageState createState() => _CommunityPageState();
-}
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      body:  SafeArea ( child: Column(children: <Widget>[
+                Image.asset(
+                  'images/avatartla.png' ,
+                   height: 200,
+                  width:300,
+                ), 
+                       Card(
+                      margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 5.0),
+                      clipBehavior: Clip.antiAlias,
+                      color: Colors.white,
+                      elevation: 5.0,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 22.0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
 
-class _CommunityPageState extends State<CommunityPage> { 
-int _currentIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: kBackgroundColor, 
-        body:SafeArea( 
-          child: Column(
-            children: <Widget>[ 
-           // Image(
-              //Image.asset('images/avatartla.png'),
-           // ), 
-           // Text(
-                //    'Avatar The Last Airbender'
-               //),
-           // Row(children: <Widget>[
-             //Container( child: FlatButton(
-              // child: 
-                   // Text(
-                   // 'Talk'
-              // ),
-             //),   
-             //{onPressed: null
+                                children: <Widget>[
+                                  Text(
+                                    "Posts",
+                                    style: TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "5200",
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.pinkAccent,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
 
-            // },
-             
-            // ), 
-             //Container( child: FlatButton(
-              // child: 
-               //     Text(
-                //    'Watch'
-              // ),
-             //),  
-             
-             //), 
-            // Container( child: FlatButton(
-             //  child: 
-              //      Text(
-                //    'Info'
-             //  ),
-             //),  
-             
-            // ),
-             // ],
-           // ),
-              
-            Divider(
-              color: kPrimaryColor,
-            ), 
-           
-                 
-            ], 
-          ),
-        ),
-         bottomNavigationBar: BottomNavigationBar(
-                    backgroundColor: kPrimaryColor,
-                    currentIndex: _currentIndex,
-                    iconSize: 20,
-                    selectedFontSize: 18, 
-                    type: BottomNavigationBarType.fixed,
-                    items: [
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
+                                children: <Widget>[
+                                  Text(
+                                    "Followers",
+                                    style: TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "28.5K",
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.pinkAccent,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+
+                                children: <Widget>[
+                                  Text(
+                                    "Follow",
+                                    style: TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    "1300",
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: kPrimaryColor,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.search),
-                        title: Text('Search'),
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.person),
-                        title: Text('Profile'),
-                      ),
-                    ],
-                    onTap: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                    unselectedItemColor: Colors.white,
-                    selectedItemColor: Colors.black,
-                  ),
-      );
-  }
+                    )
+                  ],
+                ),
+              ),
+            );
+  } 
 }

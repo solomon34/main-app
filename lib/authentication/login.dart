@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:main_app/authentication/register.dart';
 import 'package:main_app/constants.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:main_app/authentication/user.dart';  
+import 'package:main_app/screens/home.dart';
+
 class Login extends StatefulWidget { 
   static const String id = 'Login';
   _LoginState createState() => _LoginState();
@@ -10,9 +13,10 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> { 
   // variables for user email & password
-
+  final auth = FirebaseAuth.instance;
   String email;
-  String password;
+  String password; 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,18 +58,6 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 25,
                   ),
-                  TextField( 
-                    obscureText: true,
-                    onChanged: (value) { 
-                      password = value;
-                    },
-                    
-                    decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Username'),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ), 
                     TextField( 
                     obscureText: true,
                     onChanged: (value) { 
@@ -88,8 +80,14 @@ class _LoginState extends State<Login> {
                 child: FlatButton(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                   onPressed: () async {
-//                  final newUser = await _auth.createUserWithEmailAndPassword(
-//                      email: email, password: password);
+                   try{
+                    final user = await auth.signInWithEmailAndPassword(email: email, password: password); 
+                    if (user != null) {
+                        Navigator.pushNamed(context, Home.id);
+                      } 
+                   }catch(e){
+                     print(e);
+                   }
                   },
                   child: Text(
                     'Login',

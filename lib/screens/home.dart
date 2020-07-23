@@ -55,32 +55,35 @@ class _HomePagState extends State<HomePag> {
                 width: 10.0,
               ),
               
-                  Column(
-                        children: <Widget>[  
-                        Image.asset(
-                        'images/avatartla.png' ,
-                      height: 20,
-                      
-                        ),
-                          Container(child:  
-                          
-                            FlatButton(
-                              onPressed:() {
-                                Navigator.pushNamed(context, CommunityPage.id);
-                              }, 
-                              
-                              child: 
-                                Text(
-                                  'Avatar The Last Airbender'
-                                ),
+                  Center(
+                    child: Column( 
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[  
+                          Image.asset(
+                          'images/avatartla.png' ,
+                        height: 200,
+                        width:300,
+                          ),
+                            Container(child:  
                             
-                          ), 
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                        ],
-                      ), 
+                              FlatButton(
+                                onPressed:() {
+                                  Navigator.pushNamed(context, CommunityProfile.id);
+                                }, 
+                                
+                                child: 
+                                  Text(
+                                    'Avatar The Last Airbender'
+                                  ),
+                              
+                            ), 
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                          ],
+                        ),
+                  ), 
                  
             ], 
           ),

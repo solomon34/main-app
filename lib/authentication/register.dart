@@ -1,16 +1,17 @@
-
 import 'package:flutter/material.dart';
-import 'package:main_app/constants.dart'; 
-import 'package:main_app/authentication/login.dart'; 
-import 'package:main_app/authentication/info.dart';
-class Register extends StatefulWidget { 
+import 'package:main_app/constants.dart';
+import 'package:main_app/authentication/login.dart';
+import 'package:main_app/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class Register extends StatefulWidget {
   static const String id = 'Register';
   _RegisterState createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> { 
+class _RegisterState extends State<Register> {
   // variables for user email & password
-  
+  final auth = FirebaseAuth.instance;
   String email;
   String password;
   @override
@@ -48,35 +49,43 @@ class _RegisterState extends State<Register> {
                     onChanged: (value) {
                       email = value;
                     },
-                    
                     decoration: kTextFieldDecoration,
                   ),
                   SizedBox(
                     height: 25,
                   ),
-                  TextField( 
+                  TextField(
                     obscureText: true,
-                    onChanged: (value) { 
+                    onChanged: (value) {
                       password = value;
                     },
-                    
+                    decoration:
+                        kTextFieldDecoration.copyWith(hintText: 'Username'),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  TextField(
+                    obscureText: true,
+                    onChanged: (value) {
+                      password = value;
+                    },
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter password'),
                   ),
                   SizedBox(
                     height: 25,
-                  ), 
-                    TextField( 
+                  ),
+                  TextField(
                     obscureText: true,
-                    onChanged: (value) { 
+                    onChanged: (value) {
                       password = value;
                     },
-                    
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Confirm password'),
-                  ), 
+                  ),
                   SizedBox(
-                    height:50,
+                    height: 50,
                   ),
                 ],
               ),
@@ -87,27 +96,32 @@ class _RegisterState extends State<Register> {
                 borderRadius: BorderRadius.circular(29),
                 child: FlatButton(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                  onPressed: () async { 
-                     Navigator.pushNamed(context, Info.id);
-//                  final newUser = await _auth.createUserWithEmailAndPassword(
-//                      email: email, password: password);
+                  onPressed: () async {
+                    try {
+                      final newUser = await auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      if (newUser != null) {
+                        Navigator.pushNamed(context, Home.id);
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   child: Text(
-                    'Next',
+                    'Sign Up',
                     style: TextStyle(fontSize: 15, color: Colors.black),
                   ),
                   color: kPrimaryColor,
                   splashColor: kPrimaryColor,
                 ),
               ),
-            ), 
+            ),
             FlatButton(
-              onPressed: (){
-                 Navigator.pushNamed(context, Login.id);
+              onPressed: () {
+                Navigator.pushNamed(context, Login.id);
               },
-             child: Text('Already Have an Account, Sign In!')
-             
-              ,)
+              child: Text('Already Have an Account, Sign In!'),
+            )
           ],
         ),
       ),

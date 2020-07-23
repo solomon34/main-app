@@ -17,7 +17,7 @@ class MainPage extends StatelessWidget {
         Register.id: (context) => Register(),
         Welcome.id: (context) => Welcome(),
         Info.id: (context) => Info(), 
-        CommunityPage.id: (context) => CommunityPage(),
+        CommunityProfile.id: (context) => CommunityProfile(),
       },
     );
   }
