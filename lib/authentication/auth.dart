@@ -14,4 +14,15 @@ class Auth {
   User userFromFirebase(user) { 
     return User(email: user.email, uid: user.uid);
   }
+
+User _userFromFirebaseUser(FirebaseUser user) {
+    return User(
+      uid: user.uid,
+      email: user.email,
+    );
+  }
+
+  Stream<User> get user {
+    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+  }
 }

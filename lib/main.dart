@@ -3,11 +3,13 @@ import 'package:main_app/constants.dart';
 import 'package:splashscreen/splashscreen.dart'; 
 import 'package:main_app/screens/mainpage.dart'; 
 // Everything begins with main() function 
-void main() => runApp(MaterialApp(
+void main() => runApp(MaterialApp( 
+  
       home: HomeView(),
     ));
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatelessWidget { 
+  
   @override
   Widget build(BuildContext context) {
     return SplashScreen( 

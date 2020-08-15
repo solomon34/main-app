@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:main_app/authentication/register.dart';
 import 'package:main_app/constants.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:main_app/authentication/user.dart';  
+//import 'package:main_app/authentication/user.dart';  
 import 'package:main_app/screens/home.dart';
 
 class Login extends StatefulWidget { 
@@ -83,8 +83,14 @@ class _LoginState extends State<Login> {
                    try{
                     final user = await auth.signInWithEmailAndPassword(email: email, password: password); 
                     if (user != null) {
-                        Navigator.pushNamed(context, Home.id);
-                      } 
+                        Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => HomePag()));
+                        
+                      } else{
+                        print('no user');
+                      }
                    }catch(e){
                      print(e);
                    }
